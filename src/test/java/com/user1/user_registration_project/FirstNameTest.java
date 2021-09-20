@@ -26,5 +26,27 @@ public class FirstNameTest {
 		boolean result = firstName.validateFirstName("Sa@");
 		Assert.assertEquals(false, result);
 	}
+	
+	
+	@Test
+	public void givenLastName_WhenProper_ShouldReturnTrue() {
+		FirstName firstName = new FirstName();
+		boolean result = firstName.validateFirstName("Jerry");
+		Assert.assertEquals(true, result);
+	}
+
+	@Test
+	public void givenLastName_WhenShort_ShouldReturnFalse() {
+		FirstName firstName = new FirstName();
+		boolean result = firstName.validateFirstName("Sa");
+		Assert.assertEquals(false, result);
+	}
+
+	@Test
+	public void givenLastName_WithSpecialCharacter_ShouldReturnFalse() {
+		FirstName firstName = new FirstName();
+		boolean result = firstName.validateFirstName("Sa@");
+		Assert.assertEquals(false, result);
+	}
 
 }
