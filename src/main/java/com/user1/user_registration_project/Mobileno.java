@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
  * @return true if phone is valid i.e phone number should begin with country
  *         code followed by 10 digits else returns false along with handling
  *         exceptions
+ *         and used lambda expressions
  */
 public class Mobileno {
 

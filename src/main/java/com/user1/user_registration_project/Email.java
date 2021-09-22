@@ -3,7 +3,8 @@ package com.user1.user_registration_project;
 import java.util.regex.Pattern;
 
 /**
- * method to validate email id entered by the user along with handling exceptions
+ * method to validate email id entered by the user along with handling
+ * exceptions and used lambda expressions
  * 
  * @param email id given as input by the user
  * 

@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * 
  * @return true if password has minimum 8 characters , at least one upper case,
  *         minimum 1 number character else returns false along with handling
- *         exceptions
+ *         exceptions and used lambda expressions
  */
 public class Password {
 	String passwordMatcher = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&]).{8,}";

@@ -2,6 +2,7 @@ package com.user1.user_registration_project;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.regex.Pattern;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class EmailTest {
 	private String emailId;
 	private boolean result;
 	private Email email;
+	String emailMatcher = "^[0-9a-zA-Z]+([.-_+][0-9a-zA-Z])*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})*$";
 
 	public EmailTest(String emailId, boolean result) {
 		super();
@@ -28,6 +30,20 @@ public class EmailTest {
 		email = new Email();
 	}
 
+	IUserDetails user = new IUserDetails() {
+		public boolean validate(String emailId) throws InvalidUserException {
+			try {
+			if(emailId.length() == 0) {
+				throw new InvalidUserException("Please enter valid email");
+			}
+			return Pattern.matches(emailMatcher, emailId);
+			}
+			catch(NullPointerException e) {
+				throw new InvalidUserException("Please enter valid email");
+			}
+		}
+	};
+	
 	@Parameterized.Parameters
 	public static Collection input() {
 
@@ -45,12 +61,13 @@ public class EmailTest {
 	public void testEmail() {
 		boolean obtainedResult;
 		try {
-			obtainedResult = email.testEmail(this.emailId);
+			obtainedResult = user.validate(this.emailId);
 			Assert.assertEquals(this.result, obtainedResult);
 		} catch (InvalidUserException e) {
 			Assert.assertEquals(this.result, e.getMessage());
 			e.printStackTrace();
 		}
+		
 		
 	}
 
